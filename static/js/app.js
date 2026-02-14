@@ -11,8 +11,8 @@ const resultsTable = document.querySelector('#results table');
 const noRecords = document.getElementById('no-records');
 const category = document.getElementById('category');
 const keyword = document.getElementById('keyword');
-const IPINFO_TOKEN = "1fc4b3d2bca259";
-const GOOGLE_GEOCODE_KEY = "AIzaSyCIQNLBiQWorVDz5Ug-cIuXmY1IHgspskc";
+const IPINFO_TOKEN = "";
+const GOOGLE_GEOCODE_KEY = "";
 
 /* Track active AbortControllers for search and venue requests */
 let currentSearchController = null;
