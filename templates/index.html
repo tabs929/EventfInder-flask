@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <title>Events Search</title>
+  <link rel="stylesheet" href="../static/css/styles.css" />
+</head>
+<body>
+  <main class="container">
+    <section class="card">
+      <h1>Events Search</h1>
+      <hr />
+      <form id="search-form" class="grid">
+        <label class="full">
+          <span>Keyword<span class="req">*</span></span>
+          <input id="keyword" type="text" placeholder="" required />
+        </label>
+
+        <label>
+          <span>Distance (miles)</span>
+          <input id="distance" type="number" placeholder="10" min="0" />
+        </label>
+
+        <label>
+          <span>Category<span class="req">*</span></span>
+          <select id="category">
+            <option value="" selected>Default</option>
+            <option value="KZFzniwnSyZfZ7v7nJ">Music</option>
+            <option value="KZFzniwnSyZfZ7v7nE">Sports</option>
+            <option value="KZFzniwnSyZfZ7v7na">Arts & Theatre</option>
+            <option value="KZFzniwnSyZfZ7v7nn">Film</option>
+            <option value="KZFzniwnSyZfZ7v7n1">Miscellaneous</option>
+          </select>
+        </label>
+
+        <label class="full" id="loc-wrap">
+          <span>Location<span class="req">*</span> <label class="inline">
+            <input type="checkbox" id="auto" /> Auto-Detect Location
+          </label></span>
+          <input id="location" type="text" placeholder="" required />
+        </label>
+
+        <div class="actions full">
+          <button type="button" id="search-btn" class="btn primary">SEARCH</button>
+          <button type="button" id="clear-btn" class="btn">CLEAR</button>
+        </div>
+      </form>
+    </section>
+
+    <section id="results" class="results hidden">
+      <table>
+        <thead>
+          <tr>
+            <th>Date</th>
+            <th>Icon</th>
+            <th class="sortable">Event</th>
+            <th class="sortable">Genre</th>
+            <th class="sortable">Venue</th>
+          </tr>
+        </thead>
+        <tbody id="results-body">
+
+        </tbody>
+      </table>
+      <p id="no-records" class="muted hidden">No records found</p>
+    </section>
+
+    <section id="event-details"></section>
+    <section id="venue-details"></section>
+  </main>
+
+  <script src="../static/js/app.js"></script>
+</body>
+</html>

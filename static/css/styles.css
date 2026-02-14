@@ -1,0 +1,776 @@
+/* Design tokens: colors, fonts, spacing, and table variables */
+:root{
+  --text:#ffffff;
+  --muted:#b9b9b9;
+  --accent-2:#4b6bff;
+  --ring:#333;
+  --font-serif: Georgia, "Times New Roman", Times, serif;
+  --font-sans: "Inter", "Segoe UI", system-ui, -apple-system, Roboto, Arial, sans-serif;
+  --link-base:#1976d2;
+  --link-hover:#66b3ff;
+  --details-max:780px;
+  --details-pad-v:32px;
+  --details-pad-h:36px;
+  --venue-pad-top:28px;
+  --venue-pad-bottom:46px;
+  --results-font:0.8rem;
+  --results-head-font:0.82rem;
+  --results-event-font:0.85rem;
+  --results-cell-pad-y:12px;
+  --results-cell-pad-x:24px;
+  --layout-max: 980px;
+  --results-border:#444;
+}
+
+/* Use border-box sizing for predictable layout */
+*{
+  box-sizing: border-box;
+}
+
+/* Full-height page base */
+html, body{
+  height: 100%;
+}
+
+/* Dark background, centered main content, and padding */
+body{
+  margin:0;
+  font-family: var(--font-sans);
+  color:var(--text);
+  background:url('../img/background.jpg') center / cover no-repeat fixed;
+  display:flex;
+  align-items:flex-start;
+  justify-content:center;
+  padding:40px 16px 60px;
+}
+
+/* Centered content container with max width */
+.container{
+  max-width: var(--layout-max);
+  width: 100%;
+  margin: 0 auto;
+  padding: 0 8px;
+}
+
+/* Translucent glass card panel */
+.card{
+  background:rgb(255 255 255 / 24%);
+  border-radius:16px;
+  padding:32px 36px 30px;
+  box-shadow:0 4px 24px -4px rgba(0, 0, 0, 0.388), 0 0 0 1px rgba(255,255,255,.04);
+  backdrop-filter:blur(5px);
+  -webkit-backdrop-filter:blur(10px);
+  max-width:620px;
+  margin:0 auto;
+}
+
+/* Serif page title */
+h1{
+  margin:0 0 8px;
+  font-weight:500;
+  letter-spacing:.3px;
+  text-align:center;
+  font-family: var(--font-serif);
+  font-size:1.9rem;
+}
+
+/* Thin horizontal rule */
+hr{
+  border: 0;
+  border-top: 1px solid #bbbbbb;
+  margin: 10px 0 18px;
+}
+
+/* Highlight selected text */
+::selection{
+  background: var(--accent-2);
+  color: #fff;
+}
+
+/* Visible focus ring for keyboard navigation */
+*:focus-visible{
+  outline: 2px solid var(--accent-2);
+  outline-offset: 2px;
+}
+
+/* Remove default outline (replaced by focus-visible) */
+*:focus{
+  outline: none;
+}
+
+/* Two-column form grid */
+.grid{
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 16px;
+}
+
+/* Base label styling */
+label{
+  display:flex;
+  flex-direction:column;
+  gap:6px;
+  font-size:.85rem;
+  font-weight:550;
+  letter-spacing:.3px;
+  color: #5ebdca;
+  text-transform:none;
+}
+
+/* Full-width label across both grid columns */
+label.full{
+  grid-column: 1 / -1;
+}
+
+/* Inline label for checkbox with baseline alignment */
+label.inline{
+  font-weight:400;
+  font-size:.7rem;
+  margin-left:10px;
+  opacity:.9;
+  display:inline-flex;
+  flex-direction:row;
+  align-items:baseline;
+  gap:6px;
+  color:#b6b6b6;
+  font-family: 'Times New Roman', Times, serif;
+}
+
+/* Red asterisk for required fields */
+.req{
+  color: #d82727;
+  margin-left: 2px;
+}
+
+/* Base styles for inputs and selects */
+input,select{
+  padding:10px 12px;
+  border-radius:8px;
+  border:1px solid #bbbbbb;
+  background:rgba(20,20,20,.65);
+  color:var(--text);
+  outline:none;
+  font-size:.95rem;
+}
+
+/* Muted placeholder and invalid select color */
+input::placeholder,
+select:invalid{
+  color: #7c7c7c;
+}
+
+/* Focus styling for inputs and selects */
+input:focus,
+select:focus{
+  border-color: var(--accent-2);
+  box-shadow: 0 0 0 3px rgba(75,107,255,.32);
+  background: rgba(25,25,25,.9);
+}
+
+/* Actions row with buttons */
+.actions{
+  display: flex;
+  gap: 3px;
+  justify-content: flex-start;
+  margin-top: 14px;
+}
+
+/* Base button styles */
+.btn{
+  border-radius: 10px;
+  position: relative;
+  cursor: pointer;
+  font-weight: 300;
+  letter-spacing: .5px;
+  padding: 11px 26px;
+  overflow: hidden;
+  color: var(--text);
+}
+
+/* Centered button utility */
+.btn.centered{
+  display:block;
+  width:fit-content;
+  margin:12px auto 0;
+}
+
+/* Primary (orange) button theme */
+.btn.primary {
+  background: #ff5d00;
+  border: solid #c95705;
+  background-clip: padding-box;
+  border-width: 0 0 4px;
+}
+
+/* Secondary (blue) button when adjacent to another .btn */
+.btn + .btn{
+  background:#3a56ff;
+  border: solid #1e2ec8;
+  background-clip: padding-box;
+  border-width: 0 0 4px;
+}
+
+/* Button hover shadow */
+.btn:hover{
+  box-shadow: 0 0 0 1px rgba(255,255,255,.2), 0 4px 14px -4px rgba(0,0,0,.6);
+}
+
+/* Button pressed effect */
+.btn:active{
+  transform: translateY(2px);
+}
+
+/* Results section wrapper spacing */
+.results{
+  margin-top: 24px;
+}
+
+/* Base table layout */
+table{
+  width: 100%;
+  border-collapse: collapse;
+  overflow: hidden;
+  border-radius: 0;
+}
+
+/* Default table headers (non-results) */
+thead th{
+  text-align: left;
+  background: #ffffff;
+  padding: 12px;
+  border-bottom: 1px solid;
+  font-weight: 600;
+}
+
+/* Default table cells */
+tbody td{
+  padding: 12px;
+  border-bottom: 1px solid var(--ring);
+  vertical-align: middle;
+}
+
+/* Default row hover (non-results) */
+tbody tr:hover{
+  background: #1b1b1b;
+}
+
+/* Pointer cursor for sortable headers */
+th.sortable{
+  cursor: pointer;
+}
+
+/* Muted helper text */
+.muted{
+  color: var(--muted);
+  text-align: center;
+  margin: 14px 0;
+}
+
+/* Utility to hide elements */
+.hidden{
+  display: none;
+}
+
+/* No-records banner (white bar with red text) */
+#no-records{
+  background: #fff;
+  color: #d32f2f;
+  font-weight: 600;
+  padding: 8px 12px;
+  margin: 8px 0 0;
+  border-radius: 0;
+  box-shadow: none;
+}
+
+/* Light-themed results table container */
+.results table{
+  background: #fff;
+  color: #111;
+  border: 1px solid var(--results-border);
+  font-size: var(--results-font);
+  line-height: 1.3;
+  table-layout: auto;
+  box-shadow: 0 6px 18px -6px rgba(0,0,0,.35), 0 0 0 1px rgba(0,0,0,.06);
+}
+
+/* Results header wrapper with elevation layers */
+.results thead{
+  position: relative;
+  z-index: 3;
+}
+
+/* Thin highlight line above header */
+.results thead::before{
+  content: "";
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 0;
+  height: 1px;
+  background: linear-gradient(to right, rgba(255,255,255,.85), rgba(255,255,255,.55), rgba(255,255,255,.85));
+  pointer-events: none;
+  z-index: 2;
+}
+
+/* Subtle shadow band under header */
+.results thead::after{
+  content: "";
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 100%;
+  height: 10px;
+  background: linear-gradient(rgba(0,0,0,.20), rgba(0,0,0,.06) 55%, rgba(0,0,0,0) 85%);
+  pointer-events: none;
+  z-index: 1;
+}
+
+/* Column 1 width (date) */
+.results thead th:nth-child(1),
+.results tbody td:nth-child(1){
+  width: 14%;
+  min-width: 130px;
+}
+
+/* Column 2 width (icon) */
+.results thead th:nth-child(2),
+.results tbody td:nth-child(2){
+  width: 14%;
+  min-width: 120px;
+}
+
+/* Column 3 width (event name) */
+.results thead th:nth-child(3),
+.results tbody td:nth-child(3){
+  width: 47%;
+  min-width: 420px;
+}
+
+/* Column 4 width (genre) */
+.results thead th:nth-child(4),
+.results tbody td:nth-child(4){
+  width: 10%;
+  min-width: 90px;
+}
+
+/* Column 5 width (venue) */
+.results thead th:nth-child(5),
+.results tbody td:nth-child(5){
+  width: 15%;
+  min-width: 150px;
+}
+
+/* Results header cell styling */
+.results thead th{
+  background: #ffffff;
+  color: #111;
+  border-bottom: 1px solid var(--results-border);
+  font-size: var(--results-head-font);
+  font-weight: 600;
+  letter-spacing: .35px;
+  padding: var(--results-cell-pad-y) var(--results-cell-pad-x);
+  text-align: center;
+  box-shadow: 0 2px 4px -2px rgba(0,0,0,.18), inset 0 1px 0 rgba(255,255,255,.9);
+}
+
+/* Results body cell styling */
+.results tbody td{
+  border-bottom: 1px solid var(--results-border);
+  padding: var(--results-cell-pad-y) var(--results-cell-pad-x);
+  text-align: center;
+}
+
+/* Center text for header and body cells */
+.results thead th,
+.results tbody td{
+  text-align: center;
+}
+
+/* Multi-line spacing for event names */
+.results tbody td:nth-child(3){
+  line-height: 1.28;
+}
+
+/* Thumbnail image sizing within icon column */
+.results tbody td:nth-child(2) img{
+  width: 100%;
+  max-width: 100%;
+  height: auto;
+  display: block;
+  margin: 0 auto;
+  padding: 4px 2px;
+}
+
+/* Vertical separators between body cells */
+.results tbody td + td{
+  border-left: 1px solid var(--results-border);
+}
+
+/* Vertical separators between header cells */
+.results thead th{
+  border-right: 1px solid var(--results-border);
+}
+
+/* Remove right border on last header cell */
+.results thead th:last-child{
+  border-right: 0;
+}
+
+/* Keep a bottom border on the last row */
+.results tbody tr:last-child td{
+  border-bottom: 1px solid var(--results-border);
+}
+
+/* Light hover for results table rows */
+.results tbody tr:hover{
+  background: #f8f8f8;
+}
+
+/* Link color in results table */
+.results a{
+  color: var(--link-base);
+  text-decoration: none;
+}
+
+/* Visited link color in results table */
+.results a:visited{
+  color: var(--link-base);
+}
+
+/* Hover state for links in results table */
+.results a:hover{
+  color: var(--link-hover);
+  text-decoration: none;
+}
+
+/* Focus-visible state for links in results table */
+.results a:focus-visible{
+  color: var(--link-hover);
+  text-decoration: underline;
+}
+
+/* Serif typography for all event-details content */
+#event-details,
+#event-details *{
+  font-family: var(--font-serif);
+}
+
+/* Sans typography for venue details container */
+#venue-details{
+  font-family: var(--font-sans);
+}
+
+/* Serif title inside venue details */
+#venue-details .venue-title{
+  font-family: var(--font-serif);
+}
+
+/* Results table base font family */
+.results{
+  font-family: var(--font-sans);
+}
+
+/* Serif header text in results table */
+.results thead th{
+  font-family: var(--font-serif);
+}
+
+/* Serif font and size for event name cells and links */
+.results tbody td:nth-child(3),
+.results tbody td:nth-child(3) a{
+  font-family: var(--font-serif);
+  font-size: var(--results-event-font);
+}
+
+/* Event name link default/visited/hover/focus color behavior */
+.results tbody td:nth-child(3) a{
+  color: #111;
+  text-decoration: none;
+}
+.results tbody td:nth-child(3) a:visited{
+  color: #111;
+}
+.results tbody td:nth-child(3) a:hover{
+  color: var(--link-base);
+}
+.results tbody td:nth-child(3) a:focus-visible{
+  color: var(--link-base);
+  text-decoration: underline;
+}
+
+/* Stack the form grid on small screens */
+@media (max-width:720px){
+  .grid{
+    grid-template-columns: 1fr;
+  }
+}
+
+/* Event details card container */
+.event-details-card.card{
+  max-width: var(--details-max);
+  padding: var(--details-pad-v) var(--details-pad-h) calc(var(--details-pad-v) - 4px);
+  margin: 28px auto 8px;
+  overflow: hidden;
+  overflow-wrap: anywhere;
+}
+
+/* Event title typography */
+.event-title{
+  margin:0 auto 20px;
+  text-align:center;
+  font-family: var(--font-serif);
+  font-size:1.6rem;
+  font-weight:400;
+  letter-spacing:.4px;
+  line-height:1.1;
+  width:fit-content;
+}
+
+/* Two-column layout for event details */
+.event-detail-grid{
+  display: grid;
+  grid-template-columns: 1.4fr 1fr;
+  gap: 28px;
+  align-items: anchor-center;
+}
+
+/* Right-side container for seat map */
+.detail-right{
+  display:flex;
+  justify-content:center;
+  width:100%;
+  text-align:center;
+}
+
+/* Seat map image styling */
+.seat-map{
+  max-width: 100%;
+  height: auto;
+  border-radius: 8px;
+  display:block;
+  margin:0 auto;
+}
+
+/* Stacked definition list for event details */
+.detail-list{
+  margin: 0;
+  padding: 0;
+}
+
+/* Definition term styling */
+.detail-list dt{
+  color: #5ebdca;
+  font-weight: 700;
+  margin: 12px 0 6px;
+  font-size: 1.15rem;
+}
+
+/* Definition description styling */
+.detail-list dd{
+  margin: 0 0 6px;
+  padding-bottom: 8px;
+}
+
+/* Links inside event details */
+#event-details a{
+  color: var(--link-base);
+  text-decoration: none;
+}
+#event-details a:visited{
+  color: var(--link-base);
+}
+#event-details a:hover{
+  color: var(--link-hover);
+  text-decoration: none;
+}
+#event-details a:focus-visible{
+  color: var(--link-hover);
+  text-decoration: underline;
+}
+
+/* Stack event details grid on small screens */
+@media (max-width: 720px){
+  .event-detail-grid{
+    grid-template-columns: 1fr;
+  }
+}
+
+/* Venue card container (white surface) */
+.venue-card{
+  background: #fff;
+  color: #111;
+  border-radius: 22px;
+  padding: var(--venue-pad-top) var(--details-pad-h) var(--venue-pad-bottom);
+  margin: 8px auto 16px;
+  max-width: var(--details-max);
+  position: relative;
+  box-shadow: 0 8px 26px -6px rgba(0,0,0,.28), 0 2px 6px -2px rgba(0,0,0,.18);
+  font-size: .92rem;
+  line-height: 1.45;
+  overflow-wrap: anywhere;
+}
+
+/* Inner frame decoration for venue card */
+.venue-card::before{
+  content: "";
+  position: absolute;
+  inset: 14px;
+  border: 1px solid #111;
+  border-radius: 14px;
+  pointer-events: none;
+  box-shadow: 0 0 0 0 rgba(0,0,0,.2);
+}
+
+/* Centered header group inside venue card */
+.venue-header{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+/* Venue title typography */
+.venue-title{
+  text-align: center;
+  font-family: var(--font-serif);
+  font-size: 1.6rem;
+  margin: 5px 0 0;
+  padding-bottom: 4px;
+  border-bottom: 1px solid #111;
+  display: block;
+  width: fit-content;
+  font-weight: 400;
+  letter-spacing: .4px;
+  line-height: 1.1;
+}
+
+/* Venue logo sizing */
+.venue-logo{
+  display: block;
+  max-width: 200px;
+  width: 100%;
+  height: auto;
+  margin: 10px auto 4px;
+}
+
+/* Grid layout for venue details with divider */
+.venue-grid{
+  margin-top: 4px;
+}
+.venue-grid{
+  display: grid;
+  grid-template-columns: 1fr 1px 1fr;
+  gap: 24px;
+  align-items: center;
+}
+
+/* Tweak spacing when venue has no logo */
+.venue-card.no-logo .venue-grid{
+  margin-top: 10px;
+}
+
+/* Vertical divider between venue columns */
+.venue-divider{
+  width: 1px;
+  height: 100%;
+  background: #111;
+  justify-self: center;
+}
+
+/* Left and right columns in venue grid */
+.venue-left,
+.venue-right{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 14px;
+}
+
+/* Address block layout */
+.venue-address{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+  text-align: center;
+}
+
+/* Address label styling */
+.venue-address .label{
+  font-weight: 700;
+  color: #333;
+}
+
+/* Address line styling */
+.venue-address .address-line{
+  font-size: .85rem;
+  font-weight: 400;
+}
+
+/* Venue action links */
+.venue-map-link,
+.venue-more-link{
+  color: var(--link-base);
+  text-decoration: none;
+  font-size: 1.05rem;
+}
+
+/* Hover state for venue action links */
+.venue-map-link:hover,
+.venue-more-link:hover{
+  color: var(--link-hover);
+  text-decoration: none;
+}
+
+/* Focus state for venue action links */
+.venue-map-link:focus-visible,
+.venue-more-link:focus-visible{
+  color: var(--link-hover);
+  text-decoration: underline;
+}
+
+/* Wrapper for the Show Venue Details CTA */
+.show-venue-wrap{
+  display: flex;
+  justify-content: center;
+  margin: 6px 0;
+}
+
+/* Button styling for the Show Venue Details CTA */
+.show-venue-cta{
+  background: transparent;
+  border: 0;
+  cursor: pointer;
+  padding: 8px 4px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+}
+
+/* CTA text styling */
+.show-venue-cta .text{
+  color: #fff;
+  font-family: var(--font-serif);
+  font-size: 1.6rem;
+  line-height: 1;
+}
+
+/* Chevron indicator box */
+.show-venue-cta .chevron{
+  width: 26px;
+  height: 26px;
+  border-right: 2px solid #ddd;
+  border-bottom: 2px solid #ddd;
+  transform: rotate(45deg);
+  margin-top: -6px;
+}
+
+/* CTA hover state (text color) */
+.show-venue-cta:hover .text{
+  color: #b7b7b7;
+}
+
+/* CTA hover state (chevron color) */
+.show-venue-cta:hover .chevron{
+  border-color: #b7b7b7;
+}

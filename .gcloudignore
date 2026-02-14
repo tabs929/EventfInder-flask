@@ -1,0 +1,61 @@
+# Files and directories ignored by gcloud when deploying/building
+# Docs: https://cloud.google.com/sdk/docs/ignoring-files
+
+# This file itself
+.gcloudignore
+
+# Version control
+.git
+.gitignore
+.gitattributes
+
+# Python cache/bytecode
+__pycache__/
+*.py[cod]
+*$py.class
+.pytest_cache/
+
+# Virtual environments
+.venv/
+venv/
+
+# Assignment documentation (not needed in deployment)
+process_log.txt
+ENV/
+env/
+*/.venv/
+*/venv/
+
+# Packages and build artifacts
+pip-wheel-metadata/
+dist/
+build/
+*.egg-info/
+*.whl
+
+# Editors/OS
+.DS_Store
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# Notebooks/temp
+.ipynb_checkpoints/
+*.log
+
+# Node (if present in future)
+node_modules/
+
+# Environment files / secrets
+.env
+.env.*
+*.env
+
+# Test outputs/coverage (optional)
+coverage/
+htmlcov/
+
+# Archives
+*.tar.gz
+*.zip
